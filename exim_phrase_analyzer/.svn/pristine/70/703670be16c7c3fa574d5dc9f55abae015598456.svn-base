@@ -1,0 +1,286 @@
+var bicAnalyzer = (function(){
+	const logger = require('./logger');
+//	const slack = require('../lib/slack');
+	const config = require('../lib/config');
+	const async = require('async');
+	const http = require('http');
+	const querystring = require('querystring');
+	const mariaDBDao = require('../dao/mariaDBDao');
+	// require('string-format-js');
+	
+	const TIMEOUT = config.BICA_CONFIG.TIMEOUT;
+	
+	const RETRY_TIME = config.BICA_CONFIG.RETRY_TIME;	// async.retry
+	const RETRY_INTERVAL = config.BICA_CONFIG.RETRY_INTERVAL;
+	
+	const bicHost = {
+		host : config.BICA_CONFIG.BICA_IP,
+		port : config.BICA_CONFIG.BICA_PORT
+	}
+	
+	var setConceptId = function(analType, callback){
+		mariaDBDao.selectConceptIds(analType, function(err, results){
+			if (err){
+				callback('ERR_DB_CONCEPT');
+			}else{
+				bicHost.concept_id = results;
+				logger.debug(bicHost);
+				callback(null);
+			}
+		});
+	}
+	
+	var restApi = function(concept_id, doc, callback){ 
+		//http://[Interface Server IP]:[InterfaceServer Port]/request.is?data=[sentence]&conceptID=[최상위컨셉아이디]
+		var attachs = "";
+		if (typeof doc.attachs !== "undefined"){
+			attachs = doc.attachs[0].content;
+			doc.attachs.forEach(function(element, index, array){
+				// attachs += element.content.replace('/\\n/gi',' ') + ' ';
+				attachs += element.content + ' ';
+			}) ;
+		}
+		const content = (typeof doc.doc_content === "undefined" ? "":doc.doc_content);
+
+		
+		var task = function(callback, result){
+			if (content === ""){
+				callback(null,{'doc_id': doc.doc_id, 'result':[]});
+			}else{
+				var postData = querystring.stringify(
+					{
+						data : (content + ' ' +attachs)
+															/*.replace(/\</g, "")
+															.replace(/\>/g, "")
+															.replace(/\n/g, "")
+															.replace(/\'/g, "\'")
+															.replace(/\&/g, "\&")
+															.replace(/\r/g, "")
+															.replace(/\t/g, "")
+															.replace(/\b/g, "")
+															.replace(/\f/g, "")
+															.replace(/\",\"index\"/g, ',\"index\"')
+															.replace(/\"/g, '\"')
+															.replace(/[\u0000-\u0019]+/g, "")
+															.replace(/[\u001A]+/g, "")*/, 
+						conceptID : concept_id == 0 ? '' : concept_id
+					}
+				);
+				logger.debug((content + ' ' +attachs)
+															/*.replace(/\</g, "")
+															.replace(/\>/g, "")
+															.replace(/\n/g, "")
+															.replace(/\'/g, "\'")
+															.replace(/\&/g, "\&")
+															.replace(/\r/g, "")
+															.replace(/\t/g, "")
+															.replace(/\b/g, "")
+															.replace(/\f/g, "")
+															.replace(/\",\"index\"/g, ',\"index\"')
+															.replace(/\"/g, '\"')
+															.replace(/[\u0000-\u0019]+/g, "")
+															.replace(/[\u001A]+/g, "")*/);
+
+				var byteLength = Buffer.byteLength(postData);			
+				var options = {
+						host: bicHost.host,
+						port: bicHost.port,
+						path: '/request.is', 					method: 'POST',
+						//path: '/request.is?data=' +content + "&conceptID=" + bicHost.concept_id, method:'GET',
+						headers : {"Content-Type":"text/html", "Content-Length" : byteLength}
+				};
+
+				var req = http.request(options, function(res) {				
+					  res.setEncoding('utf8');
+					  var ret = "";
+					  res.on('data', function (chunk) {
+						ret += chunk;
+					  });
+					  res.on('end', function(){
+						  if (res.statusCode===200){
+							  try{	//
+								  ret = ret.replace(/\n/g, "")
+											.replace(/\'/g, "\'")
+											.replace(/\&/g, "\&")
+											.replace(/\r/g, "")
+											.replace(/\t/g, "")
+											.replace(/\b/g, "")
+											.replace(/\f/g, "")
+											.replace(/\",\"index\"/g, ',\"index\"')
+											.replace(/\"/g, '\"')
+											.replace(/[\u0000-\u0019]+/g, "")
+											.replace(/[\u001A]+/g, "");
+
+								  var result = JSON.parse(ret);
+								  var statusCode = result.stauts.code;
+								  if (statusCode === 200 || statusCode === "200"){
+									  callback(null,{'doc_id': doc.doc_id, 'result':result.result});
+								  }else{
+									  // ------result.stauts.code 607 : All TMF daemon busy //------result.stauts.code 900 : Unknown error occured
+									  logger.debug(result.stauts.msg);
+									  logger.debug('[bicAnalyzer] retry...');
+									  callback(result.stauts.msg, null);
+								  }
+							  }catch(e){
+								  logger.error("[bicAnalyzer] json parse error : " + e);
+								  // logger.debug(ret);
+								  callback('ERR_JSON_PARSE_FAILED ' + doc.doc_id);
+							  }
+						  }else{
+							  logger.debug("[bicAnalyzer] BICA status error : " + res.statusCode);
+							  callback(res.statusCode, null);
+						  }
+					  });
+				});
+				
+				req.write(postData);
+				// req.write(postData, 'utf8');
+				req.setTimeout(TIMEOUT, function(){	
+					logger.debug('request timed out' );
+					// callback('request timed out');
+				});	//ms
+				req.on('error', function(err){
+					logger.error('[bicAnalyzer] problem with request : ' + err);
+					logger.error(err.stack);
+					// ECONNRESET 이전의 연결 데이터를 잃어버렸고 클라이언트는 여전히 socket을 연결하고 있을 때 클라이언트가 서버에 연결을 시도했을 때 발생?
+					// err = "ERR_BICA_UNKNOWN";
+					callback(err);
+				});
+				req.end();
+			}
+		};
+		
+		async.retry({times:RETRY_TIME, interval:RETRY_INTERVAL}
+		, task
+		, function(err, result){
+			//logger.debug(err);			logger.debug(result);
+			if (err){
+				logger.error('[bicAnalyzer] ');
+				logger.error(err);
+/*				// slack alert
+				var slackMessage = {
+					color: 'danger',
+					title: 'bicAnalyzer',
+					value: '[bicAnalyzer](project_seq:'+bicHost.project_seq+') [host:'+bicHost.host+'] [port:' +bicHost.port+'] [concept_id:' +bicHost.concept_id+ '] bicAnalyzer restApi failed.' + err
+				};
+				
+				slack.sendMessage(slackMessage, function(err) {
+					if (err) {
+						logger.error(err);
+					} else {
+						logger.info('[bicAnalyzer] Successfully push message to Slack');
+					}
+				});
+				
+				//console.trace(err.message);
+				logger.error("[bicAnalyzer] " + err);
+				logger.error(err.indexOf('ERR_JSON_PARSE_FAILED') );
+
+
+				if (err == "SKIP_THIS_ERR" || err.indexOf('ERR_JSON_PARSE_FAILED') >=0 ){
+					callback(null, []);//callback(null, {});
+				}else{
+					callback(err);
+				}
+*/
+				callback(config.LOG_MESSAGE.ERR_BICA_RESTAPI);
+				
+			}else{
+				//callback(null);
+				logger.debug('[bicAnalyzer] ');
+				callback(null, result);//-----callback was already called...?error
+			}
+		});
+		
+	};
+	
+	
+	
+	/*
+	const xml = require('xml');
+	const xml2js = require('xml2js');
+	
+	
+	
+	//분석설정 상태 조회
+	//getAnalyzerSettingStatus
+	//SELECT id, path_name FROM wn_tmf_tbl_concept; cid 조회 쿼리
+	var getAnalyzerSettingStatus = function(bicHost, callback){
+		//<Request><RequestType>getAnalyzerSettingStatus</RequestType><RequestId>1</RequestId><Params><Param><analyzerName>hyundai_1</analyzerName></Param></Params></Request>
+		var xmlObject = {
+	            Request: [
+	                {RequestType: 'getAnalyzerSettingStatus'},
+	                //{RequestId: (auto)},
+	                {Params: [
+	                    {analyzerName: [bicHost.analyzerName]}
+	                ]}
+	            ]
+	        };
+		var xmlString = xml(xmlObject, {steam:true});
+
+		var options = {
+				host: bicHost.host,
+				port: bicHost.port,
+				//path: '/getAnalyzerSettingStatus.is',
+				path: '/getAnalyzerSettingStatus.is?format=xml&query=' + xmlString,
+				method: 'POST'
+		};
+		
+//		logger.debug("xmlString : " + xmlString);
+		var postData = querystring.stringify({format : 'xml', query : xmlString});
+		
+		var ret = "";
+		var req = http.request(options, function(res) {
+			  logger.debug("===========================");
+			  console.log('STATUS: ' + res.statusCode);
+			  console.log('HEADERS: ' + JSON.stringify(res.headers));
+			  console.log('STATUS: ' + JSON.stringify(res));
+			  res.setEncoding('utf8');
+			  res.on('data', function (chunk) {
+			    console.log('BODY: ' + chunk);
+			    ret += chunk;
+			  });
+			  res.on('end', function(){
+				  logger.debug('No more data in response');
+				  console.log(ret);
+				  //callback(null,ret);
+			  });
+		});
+		//req.write(postData);
+		req.on('error', function(err){
+			logger.debug('problem with request : ');
+			logger.debug(err);
+		});
+		req.end();
+		//req.end(postData, 'utf8', function(){callback(null, ret);});
+	};
+	
+	
+	//등록한 분석 설정 수행 : 해당 분석설정명을 시작 혹은 정지하는 API
+	//runAnalyzer
+	//http://[Interface Server IP]:[InterfaceServer Port]/runAnalyzer.is?format=xml&query=[query]
+	var runAnalyzer = function(bicHost, status){
+		var xmlObject = {
+	            request: [
+	                {RequestType: 'runAnalyzer'},
+	                //{RequestId: (auto)},
+	                {params: [
+	                    {analyzerName: [bicHost.analyzerName]},
+	                    {setting: [status]}	//status : start / stop
+	                ]}
+	            ]
+	        };
+		var xmlString = xml(xmlObject, {declaration: true, indent: '\t'});
+	};	
+	*/
+	return {
+		// getAnalyzerSettingStatus : getAnalyzerSettingStatus,
+		// runAnalyzer :runAnalyzer,
+		restApi: restApi,
+		setConceptId : setConceptId
+	};
+})();
+
+if (exports) {
+	module.exports = bicAnalyzer;
+}

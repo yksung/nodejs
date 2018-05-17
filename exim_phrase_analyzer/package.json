@@ -1,0 +1,23 @@
+{
+    "name": "phrase_analyzer",
+    "version": "0.0.1",
+    "description": "make Analysis Result json from BICA",
+    "main": "index_phrase.js",
+    "author": "avedog@wisenut.co.kr",
+    "dependencies": {
+        "async": "= 1.5.2",
+        "camelize": "= 1.0.0",
+        "express": "^4.13.4",
+        "fs-extra": "^5.0.0",
+        "iconv": "= 2.2.0",
+        "md5": ">=2.2.1",
+        "moment": "^2.12.0",
+        "morgan": "= 1.7.0",
+        "mysql": "= 2.15.0",
+        "node-xlsx": "= 0.6.0",
+        "sleep": "= 3.0.1",
+        "winston": "^2.2.0",
+        "winston-daily-rotate-file": "^1.1.1",
+        "xml2js": "= 0.4.16"
+    }
+}

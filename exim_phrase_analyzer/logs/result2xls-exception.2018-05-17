@@ -1,0 +1,156 @@
+2018-05-17 21:58:56 - [31merror[39m: uncaughtException: Cannot find module 'sleep' date=Thu May 17 2018 21:58:56 GMT+0900 (대한민국 표준시), pid=28172, uid=null, gid=null, cwd=E:\dev\nodejs\phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=34570240, heapTotal=18169856, heapUsed=10929208, external=317102, loadavg=[0, 0, 0], uptime=525600.9910381
+Error: Cannot find module 'sleep'
+    at Function.Module._resolveFilename (module.js:547:15)
+    at Function.Module._load (module.js:474:25)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js:5:15)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+2018-05-17 21:59:19 - [31merror[39m: uncaughtException: Cannot find module 'async' date=Thu May 17 2018 21:59:19 GMT+0900 (대한민국 표준시), pid=18692, uid=null, gid=null, cwd=E:\dev\nodejs\phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=36319232, heapTotal=19742720, heapUsed=11132504, external=61711, loadavg=[0, 0, 0], uptime=525624.4033773
+Error: Cannot find module 'async'
+    at Function.Module._resolveFilename (module.js:547:15)
+    at Function.Module._load (module.js:474:25)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js:41:16)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+2018-05-17 22:00:02 - [31merror[39m: uncaughtException: Cannot find module 'md5' date=Thu May 17 2018 22:00:02 GMT+0900 (대한민국 표준시), pid=11196, uid=null, gid=null, cwd=E:\dev\nodejs\phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=36868096, heapTotal=19218432, heapUsed=11417048, external=118947, loadavg=[0, 0, 0], uptime=525667.0788182
+Error: Cannot find module 'md5'
+    at Function.Module._resolveFilename (module.js:547:15)
+    at Function.Module._load (module.js:474:25)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\jsonAnalyzer_exim_phrase.js:3:13)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+2018-05-17 22:02:13 - [31merror[39m: uncaughtException: Unexpected string date=Thu May 17 2018 22:02:12 GMT+0900 (대한민국 표준시), pid=28112, uid=null, gid=null, cwd=E:\dev\nodejs\phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=40837120, heapTotal=20791296, heapUsed=14817112, external=356183, loadavg=[0, 0, 0], uptime=525797.8993007
+E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\config.js:40
+	"MAX_CONTENT_SIZE" : 1024*30
+	^^^^^^^^^^^^^^^^^^
+
+SyntaxError: Unexpected string
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (E:\github\dplatform\nodejs\exim_phrase_analyzer\dao\mariaDBDao.js:3:16)
+2018-05-17 22:04:40 - [31merror[39m: uncaughtException: content is not defined date=Thu May 17 2018 22:04:40 GMT+0900 (대한민국 표준시), pid=10200, uid=null, gid=null, cwd=E:\dev\nodejs\phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=42770432, heapTotal=30752768, heapUsed=11178304, external=70571, loadavg=[0, 0, 0], uptime=525945.2987314
+ReferenceError: content is not defined
+    at task (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:43:3)
+    at E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:651:21
+    at E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:718:13
+    at iterate (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:262:13)
+    at async.forEachOfSeries.async.eachOfSeries (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:281:9)
+    at _parallel (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:717:9)
+    at Object.async.series (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:739:9)
+    at wrappedTask (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:674:19)
+    at Object.async.retry (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:681:32)
+    at Object.restApi (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:172:11)
+2018-05-17 22:04:40 - [31merror[39m: uncaughtException: content is not defined date=Thu May 17 2018 22:04:40 GMT+0900 (대한민국 표준시), pid=10200, uid=null, gid=null, cwd=E:\dev\nodejs\phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=43491328, heapTotal=30752768, heapUsed=11444432, external=104271, loadavg=[0, 0, 0], uptime=525945.3167325
+ReferenceError: content is not defined
+    at task (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:43:3)
+    at E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:651:21
+    at E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:718:13
+    at iterate (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:262:13)
+    at async.forEachOfSeries.async.eachOfSeries (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:281:9)
+    at _parallel (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:717:9)
+    at Object.async.series (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:739:9)
+    at wrappedTask (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:674:19)
+    at Object.async.retry (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:681:32)
+    at Object.restApi (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:172:11)
+2018-05-17 22:06:48 - [31merror[39m: uncaughtException: content is not defined date=Thu May 17 2018 22:06:47 GMT+0900 (대한민국 표준시), pid=23628, uid=null, gid=null, cwd=E:\dev\nodejs\phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=42377216, heapTotal=30752768, heapUsed=10865880, external=68445, loadavg=[0, 0, 0], uptime=526072.8170251
+ReferenceError: content is not defined
+    at task (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:43:3)
+    at E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:651:21
+    at E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:718:13
+    at iterate (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:262:13)
+    at async.forEachOfSeries.async.eachOfSeries (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:281:9)
+    at _parallel (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:717:9)
+    at Object.async.series (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:739:9)
+    at wrappedTask (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:674:19)
+    at Object.async.retry (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:681:32)
+    at Object.restApi (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:173:11)
+2018-05-17 22:06:48 - [31merror[39m: uncaughtException: content is not defined date=Thu May 17 2018 22:06:48 GMT+0900 (대한민국 표준시), pid=23628, uid=null, gid=null, cwd=E:\dev\nodejs\phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=43130880, heapTotal=30752768, heapUsed=11081264, external=99189, loadavg=[0, 0, 0], uptime=526072.834026
+ReferenceError: content is not defined
+    at task (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:43:3)
+    at E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:651:21
+    at E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:718:13
+    at iterate (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:262:13)
+    at async.forEachOfSeries.async.eachOfSeries (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:281:9)
+    at _parallel (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:717:9)
+    at Object.async.series (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:739:9)
+    at wrappedTask (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:674:19)
+    at Object.async.retry (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:681:32)
+    at Object.restApi (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:173:11)
+2018-05-17 22:10:40 - [31merror[39m: uncaughtException: content is not defined date=Thu May 17 2018 22:10:40 GMT+0900 (대한민국 표준시), pid=25896, uid=null, gid=null, cwd=E:\github\dplatform\nodejs\exim_phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=42532864, heapTotal=30752768, heapUsed=11183384, external=73527, loadavg=[0, 0, 0], uptime=526305.3453249
+ReferenceError: content is not defined
+    at task (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:43:3)
+    at E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:651:21
+    at E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:718:13
+    at iterate (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:262:13)
+    at async.forEachOfSeries.async.eachOfSeries (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:281:9)
+    at _parallel (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:717:9)
+    at Object.async.series (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:739:9)
+    at wrappedTask (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:674:19)
+    at Object.async.retry (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:681:32)
+    at Object.restApi (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:173:11)
+2018-05-17 22:10:40 - [31merror[39m: uncaughtException: content is not defined date=Thu May 17 2018 22:10:40 GMT+0900 (대한민국 표준시), pid=25896, uid=null, gid=null, cwd=E:\github\dplatform\nodejs\exim_phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=43245568, heapTotal=30752768, heapUsed=11452616, external=104271, loadavg=[0, 0, 0], uptime=526305.4613315
+ReferenceError: content is not defined
+    at task (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:43:3)
+    at E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:651:21
+    at E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:718:13
+    at iterate (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:262:13)
+    at async.forEachOfSeries.async.eachOfSeries (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:281:9)
+    at _parallel (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:717:9)
+    at Object.async.series (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:739:9)
+    at wrappedTask (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:674:19)
+    at Object.async.retry (E:\github\dplatform\nodejs\exim_phrase_analyzer\node_modules\async\lib\async.js:681:32)
+    at Object.restApi (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:173:11)
+2018-05-17 22:13:43 - [31merror[39m: uncaughtException: callback is not defined date=Thu May 17 2018 22:13:43 GMT+0900 (대한민국 표준시), pid=27808, uid=null, gid=null, cwd=E:\github\dplatform\nodejs\exim_phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=42639360, heapTotal=30752768, heapUsed=11520960, external=104518, loadavg=[0, 0, 0], uptime=526488.2987892
+ReferenceError: callback is not defined
+    at IncomingMessage.<anonymous> (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:105:8)
+    at emitNone (events.js:111:20)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2018-05-17 22:13:43 - [31merror[39m: uncaughtException: callback is not defined date=Thu May 17 2018 22:13:43 GMT+0900 (대한민국 표준시), pid=27808, uid=null, gid=null, cwd=E:\github\dplatform\nodejs\exim_phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=43380736, heapTotal=30752768, heapUsed=11695776, external=104813, loadavg=[0, 0, 0], uptime=526488.3347913
+ReferenceError: callback is not defined
+    at IncomingMessage.<anonymous> (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:105:8)
+    at emitNone (events.js:111:20)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2018-05-17 22:13:43 - [31merror[39m: uncaughtException: callback is not defined date=Thu May 17 2018 22:13:43 GMT+0900 (대한민국 표준시), pid=27808, uid=null, gid=null, cwd=E:\github\dplatform\nodejs\exim_phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=43380736, heapTotal=30752768, heapUsed=11801624, external=105110, loadavg=[0, 0, 0], uptime=526488.3927946
+ReferenceError: callback is not defined
+    at IncomingMessage.<anonymous> (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:105:8)
+    at emitNone (events.js:111:20)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2018-05-17 22:13:43 - [31merror[39m: uncaughtException: callback is not defined date=Thu May 17 2018 22:13:43 GMT+0900 (대한민국 표준시), pid=27808, uid=null, gid=null, cwd=E:\github\dplatform\nodejs\exim_phrase_analyzer, execPath=C:\Program Files\nodejs\node.exe, version=v8.11.1, argv=[C:\Program Files\nodejs\node.exe, E:\github\dplatform\nodejs\exim_phrase_analyzer\index_phrase.js], rss=43384832, heapTotal=30752768, heapUsed=11901576, external=105407, loadavg=[0, 0, 0], uptime=526488.4077955
+ReferenceError: callback is not defined
+    at IncomingMessage.<anonymous> (E:\github\dplatform\nodejs\exim_phrase_analyzer\lib\bicAnalyzer.js:105:8)
+    at emitNone (events.js:111:20)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
