@@ -1,8 +1,9 @@
 const BUF_SIZE = 1024 * 30;
 const fs = require('fs-extra');
+const root = 'C:\\dev\\nodejs\\nodejs\\';
 
 var bufferArr = null;
-fs.readFile('E:\\github\\dplatform\\nodejs\\exim_phrase_analyzer\\koreaexim_1309_D-1-201805150921-09044.txt', (err, data) => {
+fs.readFile(root+'exim_phrase_analyzer\\koreaexim_1309_D-1-201805150921-09044.txt', (err, data) => {
   if (err) throw err;
 
   var buffer1 = new Buffer(data.toString());
@@ -27,7 +28,7 @@ fs.readFile('E:\\github\\dplatform\\nodejs\\exim_phrase_analyzer\\koreaexim_1309
 
 var writeFile = function(obj) {
   return new Promise(function(resolved, rejected) {
-    fs.writeFile('E:\\github\\dplatform\\nodejs\\exim_phrase_analyzer\\' + obj.num + '.txt', obj.cont, (err) => {
+    fs.writeFile(root+'exim_phrase_analyzer\\' + obj.num + '.txt', obj.cont, (err) => {
       if (err) {
         rejected(err);
       } else {
